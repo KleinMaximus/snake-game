@@ -4,6 +4,7 @@ import { Direction } from './types';
 
 const DIRECTION_UP: Direction = { y: -1 };
 
+const serialize = (direction: Direction) => Object.keys(direction).sort().join('');
 const init = (): Direction => DIRECTION_UP;
 
 const codes: Record<string, Direction> = {
@@ -27,9 +28,8 @@ export const useDirection: UseDirection = (inactive) => {
       if (codes[event.code]) {
         setState((prev) => {
           const next = codes[event.code];
-          const isReverse =
-            ('x' in prev && 'x' in next && prev.x !== next.x) || ('y' in prev && 'y' in next && prev.y !== next.y);
-          return isReverse ? prev : codes[event.code];
+
+          return serialize(prev) === serialize(next) ? prev : codes[event.code];
         });
       }
     };
