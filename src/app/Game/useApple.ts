@@ -6,17 +6,31 @@ export type UseApple = (size: number, except: XY[]) => [[number, number], () => 
 
 export const useApple: UseApple = (size, except) => {
   const getPosition = useCallback((): XY => {
-    const index = except.reduce<Record<number, Record<number, true>>>((acc, [x, y]) => {
-      acc[x] = acc[x] || {};
-      acc[x][y] = true;
+    const count = size * size - except.length;
+    let pos = Math.floor(Math.random() * count);
+
+    const index = except.reduce<Record<number, true>>((acc, [x, y]) => {
+      acc[x * size + y] = true;
 
       return acc;
     }, {});
 
-    console.log(index);
+    const keys = Object.keys(index)
+      .map((item) => Number(item))
+      .sort();
 
-    const x = Math.floor(Math.random() * size);
-    const y = Math.floor(Math.random() * size);
+    keys.some((key) => {
+      if (pos < key) {
+        return true;
+      }
+
+      pos += 1;
+
+      return false;
+    });
+
+    const x = Math.floor(pos / size);
+    const y = pos - x * size;
 
     return [x, y];
   }, [size, except]);
