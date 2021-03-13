@@ -1,0 +1,34 @@
+.Container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.Content {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.Footer {
+  text-align: center;
+}
+
+.Header {
+  display: flex;
+  justify-content: center;
+  left: 0;
+  width: 100%;
+}
+
+.Score {
+  font-size: 20px;
+  font-weight: bold;
+}

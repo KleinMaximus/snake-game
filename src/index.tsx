@@ -1,14 +1,19 @@
+/* eslint-disable simple-import-sort/imports */
+import 'normalize.css';
+import './index.css';
+/* eslint-enable simple-import-sort/imports */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+import App from './app';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

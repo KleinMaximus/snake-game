@@ -1,0 +1,12 @@
+.Content {
+  position: relative;
+}
+
+.Result {
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

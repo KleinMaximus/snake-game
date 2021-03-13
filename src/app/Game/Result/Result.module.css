@@ -1,0 +1,36 @@
+.Button {
+  background-color: red;
+  border-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  border-width: 2px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.Button:hover {
+  cursor: pointer;
+}
+
+.Button:focus {
+  outline: none;
+}
+
+.Container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.Content {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.Score {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
