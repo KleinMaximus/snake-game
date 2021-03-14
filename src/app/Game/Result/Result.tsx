@@ -1,5 +1,7 @@
 import { cnb } from 'cnbuilder';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+
+import { Button } from '../../../ui';
 
 import css from './Result.module.css';
 
@@ -9,22 +11,16 @@ export interface ResultProps {
   score: number;
 }
 
-export const Result: React.FC<ResultProps> = ({ children = 'Game over!', className, onClick, score }) => {
-  const button = useRef<HTMLButtonElement>(null);
+export const Result: React.FC<ResultProps> = ({ children = 'Game over!', className, onClick, score }) => (
+  <div className={cnb(className, css.Container)}>
+    <div className={css.Content}>{children}</div>
 
-  useEffect(() => button?.current?.focus(), []);
-
-  return (
-    <div className={cnb(className, css.Container)}>
-      <div className={css.Content}>{children}</div>
-
-      <div className={css.Score}>
-        Your score is <b>{score}</b>
-      </div>
-
-      <button ref={button} className={css.Button} onClick={onClick}>
-        Finish
-      </button>
+    <div className={css.Score}>
+      Your score is <b>{score}</b>
     </div>
-  );
-};
+
+    <Button autofocus className={css.Button} onClick={onClick}>
+      Finish
+    </Button>
+  </div>
+);

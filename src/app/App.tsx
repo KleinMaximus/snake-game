@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { SettingsProvider } from '../services';
 import { Game } from './Game';
 import { StartButton } from './StartButton';
 import { useStart } from './useStart';
@@ -11,5 +12,9 @@ export const App: React.FC = () => {
 
   const content = started ? <Game onFinish={finish} /> : <StartButton onClick={start} />;
 
-  return <div className={css.Layout}>{content}</div>;
+  return (
+    <SettingsProvider>
+      <div className={css.Layout}>{content}</div>
+    </SettingsProvider>
+  );
 };

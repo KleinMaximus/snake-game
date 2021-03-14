@@ -1,5 +1,7 @@
 import { cnb } from 'cnbuilder';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+
+import { Button } from '../../../ui';
 
 import css from './Pause.module.css';
 
@@ -8,18 +10,12 @@ export interface PauseProps {
   onClick?: () => void;
 }
 
-export const Pause: React.FC<PauseProps> = ({ children = 'Paused', className, onClick }) => {
-  const button = useRef<HTMLButtonElement>(null);
+export const Pause: React.FC<PauseProps> = ({ children = 'Paused', className, onClick }) => (
+  <div className={cnb(className, css.Container)}>
+    <div className={css.Content}>{children}</div>
 
-  useEffect(() => button?.current?.focus(), []);
-
-  return (
-    <div className={cnb(className, css.Container)}>
-      <div className={css.Content}>{children}</div>
-
-      <button ref={button} className={css.Button} onClick={onClick}>
-        Resume
-      </button>
-    </div>
-  );
-};
+    <Button autofocus className={css.Button} onClick={onClick}>
+      Resume
+    </Button>
+  </div>
+);

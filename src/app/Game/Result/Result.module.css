@@ -1,11 +1,5 @@
 .Button {
   background-color: red;
-  border-color: rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  border-width: 2px;
-  color: white;
-  font-weight: bold;
-  padding: 10px 20px;
 }
 
 .Button:hover {

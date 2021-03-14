@@ -1,10 +1,13 @@
 import { useCallback, useState } from 'react';
 
+import { useSettings } from '../../services';
 import { XY } from './types';
 
-export type UseApple = (size: number, except: XY[]) => [[number, number], () => void];
+export type UseApple = (except: XY[]) => [[number, number], () => void];
 
-export const useApple: UseApple = (size, except) => {
+export const useApple: UseApple = (except) => {
+  const { size } = useSettings();
+
   const getPosition = useCallback((): XY => {
     const count = size * size - except.length;
     let pos = Math.floor(Math.random() * count);
