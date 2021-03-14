@@ -22,8 +22,8 @@ import css from './Game.module.css';
 export const Game: React.FC<GameProps> = ({ onFinish }) => {
   const [stopped, stop] = useResult();
   const [paused, resume] = usePause(stopped);
-  const direction = useDirection(paused || stopped);
   const [score, changeScore] = useScore();
+  const direction = useDirection(score === 0, paused || stopped);
   const [snake, changeSnake] = useSnake(!paused && !stopped && direction, score);
   const [apple, changeApple] = useApple(snake);
   const [x, y] = apple;

@@ -14,9 +14,9 @@ const codes: Record<string, Direction> = {
   ArrowUp: DIRECTION_UP,
 };
 
-export type UseDirection = (inactive?: boolean) => Direction;
+export type UseDirection = (canReverse: boolean, inactive?: boolean) => Direction;
 
-export const useDirection: UseDirection = (inactive) => {
+export const useDirection: UseDirection = (canReverse, inactive) => {
   const [state, setState] = useState(init);
 
   useEffect(() => {
@@ -29,6 +29,10 @@ export const useDirection: UseDirection = (inactive) => {
         setState((prev) => {
           const next = codes[event.code];
 
+          if (canReverse) {
+            return next;
+          }
+
           return serialize(prev) === serialize(next) ? prev : codes[event.code];
         });
       }
@@ -37,7 +41,7 @@ export const useDirection: UseDirection = (inactive) => {
     document.addEventListener('keydown', eventHandler);
 
     return (): void => document.removeEventListener('keydown', eventHandler);
-  }, [inactive]);
+  }, [canReverse, inactive]);
 
   return state;
 };
