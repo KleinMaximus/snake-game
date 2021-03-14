@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Direction, XY } from './types';
+import { useInitial } from './useInitial';
 
 export type UseSnakeStateResult = {
   grow: () => void;
@@ -8,9 +9,10 @@ export type UseSnakeStateResult = {
   update: () => void;
 };
 
-export type UseSnakeState = (direction: Direction | false, initial: XY[]) => UseSnakeStateResult;
+export type UseSnakeState = (direction: Direction | false) => UseSnakeStateResult;
 
-export const useSnakeState: UseSnakeState = (direction, initial) => {
+export const useSnakeState: UseSnakeState = (direction) => {
+  const initial = useInitial();
   const [state, setState] = useState(initial);
   const directionRef = useRef(direction);
   const increaseRef = useRef(0);

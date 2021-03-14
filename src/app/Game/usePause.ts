@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { useSettings } from '../../services';
+
 export type UsePause = (inactive?: boolean) => [boolean, () => void];
 
 export const usePause: UsePause = (inactive) => {
+  const { pauseCode } = useSettings();
   const [state, setState] = useState(false);
 
   const resume = useCallback(() => setState(false), []);
@@ -13,7 +16,7 @@ export const usePause: UsePause = (inactive) => {
     }
 
     const eventHandler = (event: KeyboardEvent) => {
-      if (event.code === 'Space') {
+      if (event.code === pauseCode) {
         setState(true);
       }
     };
@@ -21,7 +24,7 @@ export const usePause: UsePause = (inactive) => {
     document.addEventListener('keydown', eventHandler);
 
     return (): void => document.removeEventListener('keydown', eventHandler);
-  }, [inactive]);
+  }, [inactive, pauseCode]);
 
   return [state, resume];
 };

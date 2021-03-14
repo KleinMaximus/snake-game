@@ -11,7 +11,6 @@ import { Snake } from './Snake';
 import { useApple } from './useApple';
 import { useDirection } from './useDirection';
 import { useFail } from './useFail';
-import { useInitial } from './useInitial';
 import { usePause } from './usePause';
 import { useResult } from './useResult';
 import { useScore } from './useScore';
@@ -25,7 +24,7 @@ export const Game: React.FC<GameProps> = ({ onFinish }) => {
   const [paused, resume] = usePause(stopped);
   const direction = useDirection(paused || stopped);
   const [score, changeScore] = useScore();
-  const [snake, changeSnake] = useSnake(!paused && !stopped && direction, score, useInitial());
+  const [snake, changeSnake] = useSnake(!paused && !stopped && direction, score);
   const [apple, changeApple] = useApple(snake);
   const [x, y] = apple;
 

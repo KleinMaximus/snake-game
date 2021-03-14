@@ -8,7 +8,7 @@ export type StartButtonProps = Pick<DOMAttributes<HTMLButtonElement>, 'onClick'>
 
 export const StartButton: React.FC<StartButtonProps> = ({ children = 'START!', onClick }) => {
   return (
-    <Button className={css.Button} onClick={onClick}>
+    <Button autofocus className={css.Button} onClick={onClick}>
       {children}
     </Button>
   );

@@ -4,10 +4,10 @@ import { Direction, XY } from './types';
 import { useInterval } from './useInterval';
 import { useSnakeState } from './useSnakeState';
 
-export type UseSnake = (direction: Direction | false, score: number, initial: XY[]) => [XY[], () => void];
+export type UseSnake = (direction: Direction | false, score: number) => [XY[], () => void];
 
-export const useSnake: UseSnake = (direction, score, initial) => {
-  const { grow, state, update } = useSnakeState(direction, initial);
+export const useSnake: UseSnake = (direction, score) => {
+  const { grow, state, update } = useSnakeState(direction);
   const interval = useInterval(score);
   const active = !!direction;
 
